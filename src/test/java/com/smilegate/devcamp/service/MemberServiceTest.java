@@ -1,9 +1,9 @@
 package com.smilegate.devcamp.service;
 
-import com.smilegate.devcamp.domain.Member;
+import com.smilegate.devcamp.dto.MemberDto;
+import com.smilegate.devcamp.entity.Member;
 import com.smilegate.devcamp.repository.MemberRepository;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +26,12 @@ public class MemberServiceTest {
     public void 회원가입() {
         //given -> 멤버가 주어짐
         Member member = new Member("whip", "1234", "whipbaek");
-
         //when -> 가입하면
-        Long count = memberService.join(member);
+        Long count = memberService.join(new MemberDto(member));
         System.out.println("count = " + count);
 
-        //then -> DB 접근하여 id 값이 같은지 확인해보자
-        assertEquals(member, memberRepository.findOne(count));
+        //then -> DB 접근하여 id 값이 같은지 확인해보자 (dto를 거치므로 객체는 다르게 저장됨)
+        assertEquals(member.getId(), memberRepository.findOne(count).getId());
+
     }
 }
