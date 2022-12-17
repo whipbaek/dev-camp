@@ -21,8 +21,28 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <h1>Data : {str}</h1>
+                ID
+                <form onSubmit={{}}>
+                    <input
+                        type="text"
+                        name="email"
+                    />
+                </form>
+                PW
+                <form onSubmit={{}}>
+                    <input
+                        type="text"
+                        name="email"
+                    />
+                </form>
+                <button type="submit">로그인</button>
+                <button type="submit">회원가입</button>
             </header>
+
+
+
         </div>
+
     );
 }
 
