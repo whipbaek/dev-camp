@@ -1,6 +1,8 @@
-package com.smilegate.devcamp.domain;
+package com.smilegate.devcamp.entity;
 
+import com.smilegate.devcamp.dto.MemberDto;
 import com.sun.istack.NotNull;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +15,8 @@ import javax.persistence.*;
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
-    @Column(name = "member_count")
-    private Long count;
+    @Column(name = "member_number")
+    private Long number;
 
     @NotNull
     @Column(length = 30, unique = true)
@@ -37,4 +39,11 @@ public class Member {
     public Member() {
 
     }
+
+    public Member(MemberDto memberDto) {
+        this.id = memberDto.getId();
+        this.password = memberDto.getPassword();
+        this.name = memberDto.getName();
+    }
+
 }

@@ -1,13 +1,11 @@
 package com.smilegate.devcamp.service;
 
-import com.smilegate.devcamp.domain.Member;
+import com.smilegate.devcamp.dto.MemberDto;
+import com.smilegate.devcamp.entity.Member;
 import com.smilegate.devcamp.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -16,14 +14,15 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Long join(Member member) {
+    public Long join(MemberDto memberdto) {
 //        validateDuplicateMember(member);
+        Member member = new Member(memberdto); // dto 변환은 Service side 에서 진행
         memberRepository.save(member);
-        return member.getCount();
+        return member.getNumber();
     }
 
-    public Member findOne(Long memberCount) {
-        return memberRepository.findOne(memberCount);
+    public MemberDto findOne(Long memberCount) {
+        return new MemberDto(memberRepository.findOne(memberCount));
     }
 
 //    private void validateDuplicateMember(Member member) {

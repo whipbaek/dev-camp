@@ -1,11 +1,11 @@
 package com.smilegate.devcamp.repository;
 
-import com.smilegate.devcamp.domain.Member;
+import com.smilegate.devcamp.dto.MemberDto;
+import com.smilegate.devcamp.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
