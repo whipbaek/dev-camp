@@ -16,6 +16,9 @@ public class MemberDto {
     private String password;
     private String name;
 
+    public MemberDto() {
+    }
+
     public MemberDto(String id, String password, String name) {
         this.id = id;
         this.password = password;
@@ -26,5 +29,10 @@ public class MemberDto {
         this.id = member.getId();
         this.password = member.getPassword();
         this.name = member.getName();
+    }
+
+    @Override
+    public String toString(){
+        return "id : " + this.id + " , password : " + this.password + " , name : " + this.name;
     }
 }

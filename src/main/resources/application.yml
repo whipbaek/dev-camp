@@ -4,6 +4,8 @@ spring:
     url: jdbc:mysql://localhost:3306/devcamp?characterEncoding=utf8&serverTimezone=Asia/Seoul
     username: root
     password: root
+  freemarker:
+    cache: false
 
   jpa:
     hibernate:
