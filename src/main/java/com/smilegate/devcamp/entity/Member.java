@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "member")
@@ -20,10 +21,11 @@ public class Member {
 
     @NotNull
     @Column(length = 30, unique = true)
+    @Email
     private String id;
 
     @NotNull
-    @Column(length = 30)
+    @Column(length = 150)
     private String password;
 
     @NotNull
