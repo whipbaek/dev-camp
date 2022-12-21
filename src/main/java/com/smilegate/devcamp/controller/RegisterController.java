@@ -29,7 +29,7 @@ public class RegisterController {
     @PostMapping("/register")
     public String makeAccount(@Valid @ModelAttribute MemberDto memberDto) {
         log.info("{}", memberDto);
-//        memberService.join(memberDto);
+        memberService.join(memberDto);
         log.info("계정 생성 완료");
         return "redirect:/devcamp";
     }

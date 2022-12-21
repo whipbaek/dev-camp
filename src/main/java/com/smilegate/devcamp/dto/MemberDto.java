@@ -1,9 +1,12 @@
 package com.smilegate.devcamp.dto;
 
 import com.smilegate.devcamp.entity.Member;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * 유저에게 정보 입력받는 DTO (View Side)
