@@ -1,14 +1,13 @@
 package com.smilegate.devcamp.service;
 
 import com.smilegate.devcamp.dto.MemberDto;
-import com.smilegate.devcamp.entity.Member;
-import com.smilegate.devcamp.repository.MemberRepository;
-import org.assertj.core.api.Assertions;
+import com.smilegate.devcamp.repository.MemberEntityRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,8 @@ import static org.assertj.core.api.Assertions.*;
 public class MemberServiceTest {
     //@Autowired 로 빈에게 의존성 주입
     @Autowired MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberEntityRepository memberEntityRepository;
 
     @Test
     @DisplayName("회원가입 테스트 입니다.")
@@ -33,7 +33,22 @@ public class MemberServiceTest {
         System.out.println("count = " + count);
 
         //then -> DB 접근하여 id 값이 같은지 확인해보자 (dto를 거치므로 객체는 다르게 저장됨)
-        assertThat(memberdto.getId()).isEqualTo(memberRepository.findOne(count).getId());
+        assertThat(memberdto.getEmail()).isEqualTo(memberEntityRepository.findOne(count).getEmail());
 
+    }
+
+    @Test
+    @DisplayName("메일 중복 테스트 입니다.")
+    public void 메일중복테스트(){
+        //given
+        MemberDto memberDto1 = new MemberDto("whipbaek@gmail.com", "1234", "whip1");
+        MemberDto memberDto2 = new MemberDto("whipbaek@gmail.com", "1234", "whip2");
+        memberService.join(memberDto1);
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> memberService.join(memberDto2))
+                .isInstanceOf(DataIntegrityViolationException.class);
     }
 }
