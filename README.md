@@ -1,5 +1,5 @@
 # ❄SmileGate Winter:// Dev.Camp 2022
-- 해당 프로젝트는 SmileGate Winter Dev Camp 202 과정의 개인프로젝트 입니다.
+- 해당 프로젝트는 SmileGate Winter Dev Camp 2022 과정의 개인프로젝트 입니다.
 
 <br>
 

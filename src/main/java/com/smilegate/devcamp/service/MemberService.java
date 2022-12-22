@@ -1,6 +1,7 @@
 package com.smilegate.devcamp.service;
 
 import com.smilegate.devcamp.dto.MemberDto;
+import com.smilegate.devcamp.dto.MemberLoginDto;
 import com.smilegate.devcamp.entity.Member;
 import com.smilegate.devcamp.repository.MemberEntityRepository;
 import com.smilegate.devcamp.repository.MemberRepository;
@@ -22,7 +23,6 @@ public class MemberService {
 
     @Transactional
     public Long join(MemberDto memberdto) {
-            validateDuplicatedEmail(memberdto);
             memberdto.setPassword(encode(memberdto.getPassword()));
             Member member = new Member(memberdto); // dto 변환은 Service side 에서 진행
             memberEntityRepository.save(member);
@@ -47,5 +47,18 @@ public class MemberService {
         catch (DataIntegrityViolationException e){
             log.info("{}",e.getMessage());
         }
+    }
+
+    public boolean login(MemberLoginDto memberLoginDto) {
+        Member member = memberRepository.findByEmail(memberLoginDto.getEmail());
+        if(member.getEmail() == memberLoginDto.getEmail() &&
+                passwordEncoder.matches(memberLoginDto.getPassword(), member.getPassword())){
+            log.info("로그인 성공했습니다.");
+            return true;
+        }
+
+        log.info("로그인 실패했습니다.");
+
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 package com.smilegate.devcamp.service;
 
 import com.smilegate.devcamp.dto.MemberDto;
+import com.smilegate.devcamp.dto.MemberLoginDto;
 import com.smilegate.devcamp.repository.MemberEntityRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -45,10 +46,27 @@ public class MemberServiceTest {
         MemberDto memberDto2 = new MemberDto("whipbaek@gmail.com", "1234", "whip2");
         memberService.join(memberDto1);
 
-        //when
-
-        //then
+        //when, then
         assertThatThrownBy(() -> memberService.join(memberDto2))
                 .isInstanceOf(DataIntegrityViolationException.class);
+    }
+
+    @Test
+    public void 로그인테스트(){
+
+        //given
+        MemberDto memberDto = new MemberDto("whipbaek@gmail.com", "tempPassword", "whipbaek");
+        MemberLoginDto memberLoginDtoSuccess = new MemberLoginDto("whipbaek@gmail.com", "tempPassword");
+        MemberLoginDto memberLoginDtoFalse = new MemberLoginDto("whipbaek@gmail.com", "tempPassword2");
+
+        //when
+        memberService.join(memberDto);
+        boolean loginStatus1 = memberService.login(memberLoginDtoSuccess);
+        boolean loginStatus2 = memberService.login(memberLoginDtoFalse);
+
+        //then
+        assertThat(loginStatus1).isTrue();
+        assertThat(loginStatus2).isFalse();
+
     }
 }

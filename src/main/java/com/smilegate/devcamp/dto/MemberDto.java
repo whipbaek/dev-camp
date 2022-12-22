@@ -30,6 +30,12 @@ public class MemberDto {
         this.name = member.getName();
     }
 
+    public MemberDto(MemberDto memberDto) {
+        this.email = memberDto.getEmail();
+        this.password = memberDto.getPassword();
+        this.name = memberDto.getName();
+    }
+
     @Override
     public String toString(){
         return "email : " + this.email + " , password : " + this.password + " , name : " + this.name;

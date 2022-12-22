@@ -14,3 +14,12 @@ spring:
       hibernate:
         show_sql: true
         format_sql : true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: whipbaek@gmail.com
+    password: mdreviutndnqshdm
+
+spring.mail.properties.mail.smtp.auth: true
+spring.mail.properties.mail.smtp.starttls.enable: true

@@ -14,14 +14,14 @@
     <div class="col-5 py-5">
         <h2>DevCamp Authentication Register</h2>
         <form th:action method="post" >
-            <lable for="id">ID</lable>
-            <input type="email" id="id" name="id" placeholder="ID@Email.com" onfocus="this.placeholder=''" onblur="this.placeholder='ID@Email.com'" class="form-control">
-            <lable for="pw">PW</lable>
+            <lable for="email">ID</lable>
+            <input type="email" id="email" name="email" placeholder="ID@Email.com" onfocus="this.placeholder=''" onblur="this.placeholder='ID@Email.com'" class="form-control">
+            <lable for="password">PW</lable>
             <input type="password" id="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"  class="form-control">
-            <lable for="pw">Name</lable>
+            <lable for="name">Name</lable>
             <input type="text" id="name" name="name" placeholder="name" onfocus="this.placeholder=''" onblur="this.placeholder='name'"class="form-control">
             <br>
-            <button class="btn-primary btn-lg" type="submit">Register</button>
+            <button class="btn-primary btn-lg" type="submit">Next</button>
         </form>
     </div>
     <div th:replace="snow :: snow"></div>

@@ -12,14 +12,12 @@
 <body>
 <div class="container">
     <div class="col-5 py-5">
-        <h2>DevCamp Authentication Login</h2>
+        <h2>DevCamp Authentication Email</h2>
         <form th:action method="post" >
-            <lable for="email">ID</lable>
-            <input type="email" id="email" name="email" placeholder="ID@Email.com" onfocus="this.placeholder=''" onblur="this.placeholder='ID@Email.com'" class="form-control">
-            <lable for="pw">PW</lable>
-            <input type="password" id="pw" name="pw" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"  class="form-control">
+            <lable for="emailNumber">Email - Code (please check your email)</lable>
+            <input type="text" id="emailNumber" name="emailNumber" placeholder="code number" onfocus="this.placeholder=''" onblur="this.placeholder='code number'" class="form-control">
             <br>
-            <button class="btn-primary btn-lg">Login</button>
+            <button class="btn-primary btn-lg">Register</button>
         </form>
     </div>
     <div th:replace="snow :: snow"></div>
