@@ -1,13 +1,13 @@
 package com.smilegate.devcamp.entity;
 
 import com.smilegate.devcamp.dto.MemberDto;
-import com.sun.istack.NotNull;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "member")
@@ -15,25 +15,24 @@ import javax.validation.constraints.Email;
 @Setter
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "member_number")
     private Long number;
 
-    @NotNull
+    @NotBlank(message = "이메일은 필수 입력 사항입니다.")
     @Column(length = 30, unique = true)
     @Email
-    private String id;
+    private String email;
 
-    @NotNull
+    @NotBlank(message = "비밀번호는 필수 입력 사항입니다.")
     @Column(length = 150)
     private String password;
 
-    @NotNull
+    @NotBlank(message = "이름은 필수 입력 사항입니다.")
     @Column(length = 30)
     private String name;
 
-    public Member(String id, String password, String name) {
-        this.id = id;
+    public Member(String email, String password, String name) {
+        this.email = email;
         this.password = password;
         this.name = name;
     }
@@ -43,7 +42,7 @@ public class Member {
     }
 
     public Member(MemberDto memberDto) {
-        this.id = memberDto.getId();
+        this.email = memberDto.getEmail();
         this.password = memberDto.getPassword();
         this.name = memberDto.getName();
     }
