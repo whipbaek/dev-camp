@@ -44,14 +44,17 @@
 - Spring Boot
 - MySQL
 - JPA
+- thymeleaf
 - IntelliJ
 - Git
 
 <br>
 
 ## 📌구현 기능
-- [ ] 회원가입 
-  - id, password, e-mail 로 가입
+- [x] 회원가입 
+  - id(email), password, name 로 가입
+  - [x] 비밀번호 암호화
+  - [x] 이메일 중복검사
 - [ ] 로그인
   - [ ] 정보 검증 기능
 - [ ] 회원 정보 수정
