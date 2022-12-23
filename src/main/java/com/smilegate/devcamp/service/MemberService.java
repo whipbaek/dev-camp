@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+
 @Service
 @Slf4j
 @Transactional(readOnly = true)
@@ -51,16 +53,12 @@ public class MemberService {
         }
     }
 
-    public boolean login(MemberLoginDto memberLoginDto) {
+    public Member login(MemberLoginDto memberLoginDto) {
         Member member = memberRepository.findByEmail(memberLoginDto.getEmail());
-        if(member.getEmail() == memberLoginDto.getEmail() &&
-                passwordEncoder.matches(memberLoginDto.getPassword(), member.getPassword())){
-            log.info("로그인 성공했습니다.");
-            return true;
+        if(member == null) return null;
+        if(passwordEncoder.matches(memberLoginDto.getPassword(), member.getPassword())){
+            return member;
         }
-
-        log.info("로그인 실패했습니다.");
-
-        return false;
+        return null;
     }
 }

@@ -13,11 +13,19 @@
 <div class="container">
     <div class="col-5 py-5">
         <h2>DevCamp Authentication Login</h2>
-        <form th:action method="post" >
+        <form th:action th:object="${memberLoginDto}" method="post" >
             <lable for="email">ID</lable>
-            <input type="email" id="email" name="email" placeholder="ID@Email.com" onfocus="this.placeholder=''" onblur="this.placeholder='ID@Email.com'" class="form-control">
+            <input type="email" th:field="*{email}" placeholder="ID@Email.com" onfocus="this.placeholder=''" onblur="this.placeholder='ID@Email.com'" class="form-control">
+            <div class="field-error" th:errors="*{email}"></div>
+
             <lable for="pw">PW</lable>
-            <input type="password" id="pw" name="pw" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"  class="form-control">
+            <input type="password" th:field="*{password}" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"  class="form-control">
+            <div class="field-error" th:errors="*{password}"></div>
+
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:text="${#fields.globalErrors()}"></p>
+            </div>
+
             <br>
             <button class="btn-primary btn-lg">Login</button>
         </form>

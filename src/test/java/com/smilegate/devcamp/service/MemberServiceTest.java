@@ -2,6 +2,7 @@ package com.smilegate.devcamp.service;
 
 import com.smilegate.devcamp.dto.MemberDto;
 import com.smilegate.devcamp.dto.MemberLoginDto;
+import com.smilegate.devcamp.entity.Member;
 import com.smilegate.devcamp.repository.MemberEntityRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +19,6 @@ import static org.assertj.core.api.Assertions.*;
 @SpringBootTest
 @Transactional //Data RollBack 해준다.
 public class MemberServiceTest {
-    //@Autowired 로 빈에게 의존성 주입
     @Autowired MemberService memberService;
     @Autowired
     MemberEntityRepository memberEntityRepository;
@@ -55,18 +55,18 @@ public class MemberServiceTest {
     public void 로그인테스트(){
 
         //given
-        MemberDto memberDto = new MemberDto("whipbaek@gmail.com", "tempPassword", "whipbaek");
-        MemberLoginDto memberLoginDtoSuccess = new MemberLoginDto("whipbaek@gmail.com", "tempPassword");
+        MemberDto memberDto = new MemberDto("temp@gmail.com", "tempPassword", "whipbaek");
+        MemberLoginDto memberLoginDtoSuccess = new MemberLoginDto("temp@gmail.com", "tempPassword");
         MemberLoginDto memberLoginDtoFalse = new MemberLoginDto("whipbaek@gmail.com", "tempPassword2");
 
         //when
         memberService.join(memberDto);
-        boolean loginStatus1 = memberService.login(memberLoginDtoSuccess);
-        boolean loginStatus2 = memberService.login(memberLoginDtoFalse);
+        Member loginStatus1 = memberService.login(memberLoginDtoSuccess);
+        Member loginStatus2 = memberService.login(memberLoginDtoFalse);
 
         //then
-        assertThat(loginStatus1).isTrue();
-        assertThat(loginStatus2).isFalse();
+        assertThat(loginStatus1.getEmail()).isEqualTo("temp@gmail.com");
+        assertThat(loginStatus2).isEqualTo(null);
 
     }
 }
