@@ -13,13 +13,19 @@
 <div class="container">
     <div class="col-5 py-5">
         <h2>DevCamp Authentication Register</h2>
-        <form th:action method="post" >
+        <form th:action th:object="${memberDto}" method="post" >
             <lable for="email">ID</lable>
-            <input type="email" id="email" name="email" placeholder="ID@Email.com" onfocus="this.placeholder=''" onblur="this.placeholder='ID@Email.com'" class="form-control">
+            <input type="email" th:field="*{email}" placeholder="ID@Email.com" onfocus="this.placeholder=''" onblur="this.placeholder='ID@Email.com'" class="form-control">
+            <div class="field-error" th:errors="*{email}"></div>
+
             <lable for="password">PW</lable>
-            <input type="password" id="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"  class="form-control">
+            <input type="password" th:field="*{password}" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"  class="form-control">
+            <div class="field-error" th:errors="*{password}"></div>
+
             <lable for="name">Name</lable>
-            <input type="text" id="name" name="name" placeholder="name" onfocus="this.placeholder=''" onblur="this.placeholder='name'"class="form-control">
+            <input type="text" th:field="*{name}" placeholder="name" onfocus="this.placeholder=''" onblur="this.placeholder='name'"class="form-control">
+            <div class="field-error" th:errors="*{name}"></div>
+
             <br>
             <button class="btn-primary btn-lg" type="submit">Next</button>
         </form>

@@ -4,6 +4,8 @@ import com.smilegate.devcamp.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * 유저에게 정보 입력받는 DTO (View Side)
  */
@@ -11,8 +13,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MemberDto {
+
+    @NotBlank(message = "이메일은 필수 입력 사항입니다.")
     private String email;
+
+    @NotBlank(message = "비밀번호는 필수 입력 사항입니다.")
     private String password;
+
+    @NotBlank(message = "이름은 필수 입력 사항입니다.")
     private String name;
 
     public MemberDto() {

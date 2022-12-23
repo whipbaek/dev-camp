@@ -46,9 +46,9 @@ public class MemberServiceTest {
         MemberDto memberDto2 = new MemberDto("whipbaek@gmail.com", "1234", "whip2");
         memberService.join(memberDto1);
 
-        //when, then
-        assertThatThrownBy(() -> memberService.join(memberDto2))
-                .isInstanceOf(DataIntegrityViolationException.class);
+
+        assertThat(memberService.validateDuplicatedEmail(memberDto2)).isTrue();
+
     }
 
     @Test

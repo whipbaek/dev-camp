@@ -38,14 +38,16 @@ public class MemberService {
         return new MemberDto(memberEntityRepository.findOne(memberCount));
     }
 
-    public void validateDuplicatedEmail(MemberDto memberDto) {
+    public boolean validateDuplicatedEmail(MemberDto memberDto) {
         try {
             if (memberRepository.existsByEmail(memberDto.getEmail())) {
                 throw new DataIntegrityViolationException("이미 존재하는 메일입니다.");
             }
+            return false;
         }
         catch (DataIntegrityViolationException e){
             log.info("{}",e.getMessage());
+            return true;
         }
     }
 
