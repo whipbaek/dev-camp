@@ -30,11 +30,10 @@ public class MemberServiceTest {
         MemberDto memberdto = new MemberDto("whipbaek@gmail.com", "tempPassword", "whipbaek");
 
         //when -> 가입하면
-        Long count = memberService.join(memberdto);
-        System.out.println("count = " + count);
+        String email = memberService.join(memberdto);
 
-        //then -> DB 접근하여 id 값이 같은지 확인해보자 (dto를 거치므로 객체는 다르게 저장됨)
-        assertThat(memberdto.getEmail()).isEqualTo(memberEntityRepository.findOne(count).getEmail());
+        //then -> DB 접근하여 메일 값이 같은지 확인해보자 (dto를 거치므로 객체는 다르게 저장됨)
+        assertThat(memberdto.getEmail()).isEqualTo(memberEntityRepository.findOne(email).getEmail());
 
     }
 

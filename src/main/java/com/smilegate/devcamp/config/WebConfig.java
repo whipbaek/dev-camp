@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LogInCheckInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/devcamp", "/devcamp/login", "/devcamp/register", "devcamp/logout"
+                .excludePathPatterns("/devcamp", "/devcamp/login", "/devcamp/register", "devcamp/logout", "/devcamp/email", "/devcamp/email/success"
                 ,"/css/**","/js/**", "/*.ico", "/error");
     }
 }

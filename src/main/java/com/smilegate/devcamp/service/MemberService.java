@@ -24,11 +24,11 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Long join(MemberDto memberdto) {
+    public String join(MemberDto memberdto) {
             memberdto.setPassword(encode(memberdto.getPassword()));
             Member member = new Member(memberdto); // dto 변환은 Service side 에서 진행
             memberEntityRepository.save(member);
-            return member.getNumber();
+            return member.getEmail();
     }
 
     private String encode(String password){
@@ -36,8 +36,8 @@ public class MemberService {
     }
 
 
-    public MemberDto findOne(Long memberCount) {
-        return new MemberDto(memberEntityRepository.findOne(memberCount));
+    public MemberDto findOne(String email) {
+        return new MemberDto(memberEntityRepository.findOne(email));
     }
 
     public boolean validateDuplicatedEmail(MemberDto memberDto) {
@@ -60,5 +60,11 @@ public class MemberService {
             return member;
         }
         return null;
+    }
+
+    public void editMemberInfo(MemberDto memberDto) {
+        memberDto.setPassword(encode(memberDto.getPassword()));
+        Member member = new Member(memberDto); // dto 변환은 Service side 에서 진행
+        memberEntityRepository.editEntity(member);
     }
 }

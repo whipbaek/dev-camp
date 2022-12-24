@@ -1,8 +1,10 @@
 package com.smilegate.devcamp.repository;
 
+import com.smilegate.devcamp.dto.MemberDto;
 import com.smilegate.devcamp.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
@@ -15,8 +17,14 @@ public class MemberEntityRepository {
         em.persist(member);
     }
 
-    public Member findOne(Long count) {
-        Member member = em.find(Member.class, count);
+    public Member findOne(String email) {
+        Member member = em.find(Member.class, email);
         return member;
+    }
+
+    public void editEntity(Member editMember) {
+        Member member = em.find(Member.class, editMember.getEmail());
+        member.setPassword(editMember.getPassword());
+        member.setName(editMember.getName());
     }
 }

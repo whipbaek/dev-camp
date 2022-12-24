@@ -14,10 +14,11 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class Member {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_number")
-    private Long number;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "member_number")
+//    private Long number;
 
+    @Id
     @Column(length = 30, unique = true)
     @Email
     private String email;

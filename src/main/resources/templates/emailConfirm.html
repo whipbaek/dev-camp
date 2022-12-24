@@ -13,12 +13,17 @@
 <div class="container">
     <div class="col-5 py-5">
         <h2>DevCamp Authentication Email</h2>
-        <form th:action method="post" >
+        <form th:action th:object="${emailDto}" method="post" >
             <lable for="emailNumber">Email - Code (please check your email)</lable>
-            <input type="text" id="emailNumber" name="emailNumber" placeholder="code number" onfocus="this.placeholder=''" onblur="this.placeholder='code number'" class="form-control">
+            <input type="text" th:field="*{codeNumber}" placeholder="code number" onfocus="this.placeholder=''" onblur="this.placeholder='code number'" class="form-control">
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:text="${#fields.globalErrors()}"></p>
+            </div>
             <br>
             <button class="btn-primary btn-lg">Register</button>
+
         </form>
+
     </div>
     <div th:replace="snow :: snow"></div>
     <div th:replace="footer :: footer"></div>

@@ -18,10 +18,10 @@ import javax.annotation.PostConstruct;
 @Component
 public class DbInit {
 
-    private final MemberService memberService;
-
-    @PostConstruct
-    public void init() {
-        memberService.join(new MemberDto("whipbaek@gmail.com","whddls12","백종인"));
-    }
+//    private final MemberService memberService;
+//
+//    @PostConstruct
+//    public void init() {
+//        memberService.join(new MemberDto("whipbaek@gmail.com","whddls12","백종인"));
+//    }
 }

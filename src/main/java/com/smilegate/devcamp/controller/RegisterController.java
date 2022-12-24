@@ -1,5 +1,6 @@
 package com.smilegate.devcamp.controller;
 
+import com.smilegate.devcamp.dto.EmailDto;
 import com.smilegate.devcamp.dto.MemberDto;
 import com.smilegate.devcamp.entity.Member;
 import com.smilegate.devcamp.service.EmailService;
@@ -8,6 +9,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -65,15 +67,21 @@ public class RegisterController {
     }
 
     @GetMapping("/email")
-    public String emailConfirm(){
+    public String emailConfirm(@ModelAttribute(value = "emailDto") EmailDto emailDto){
         return "emailConfirm";
     }
 
     @PostMapping("/email")
-    public String checkCodeNumber(@RequestParam(value = "emailNumber") String emailNumber){
+    public String checkCodeNumber(@ModelAttribute(value = "emailDto") EmailDto emailDto, BindingResult bindingResult){
 
-        if (emailService.validateCodeNumber(emailNumber)) {
+        System.out.println("post 호출");
+        if (emailService.validateCodeNumber(emailDto.getCodeNumber())) {
             memberService.join(serverMemberDto);
+        } else{
+            System.out.println("코드가 맞지않아요");
+            bindingResult.reject("mismatch", "코드가 맞지 않습니다.");
+            System.out.println("bindingResult = " + bindingResult);
+            return "emailConfirm";
         }
         return "redirect:/devcamp/email/success";
     }
