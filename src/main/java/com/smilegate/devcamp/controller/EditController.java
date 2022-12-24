@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import static com.smilegate.devcamp.config.Const.*;
 
 @Slf4j
@@ -31,7 +34,8 @@ public class EditController {
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute MemberDto memberDto, BindingResult bindingResult){
+    public String edit(@ModelAttribute MemberDto memberDto, BindingResult bindingResult,
+                       HttpServletRequest request){
 
         // 바인딩 에러
         if (bindingResult.hasErrors()) {
@@ -52,6 +56,10 @@ public class EditController {
         }
 
         memberService.editMemberInfo(memberDto);
+
+        // change Session
+        HttpSession session = request.getSession();
+        session.setAttribute("LoginSession", new Member(memberDto));
 
         return "redirect:/devcamp";
     }

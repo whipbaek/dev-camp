@@ -62,6 +62,7 @@ public class MemberService {
         return null;
     }
 
+    @Transactional
     public void editMemberInfo(MemberDto memberDto) {
         memberDto.setPassword(encode(memberDto.getPassword()));
         Member member = new Member(memberDto); // dto 변환은 Service side 에서 진행
