@@ -13,11 +13,12 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import static com.smilegate.devcamp.config.Const.*;
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/devcamp")
+@RequestMapping(BASIC_URL)
 public class RegisterController {
 
     private final MemberService memberService;

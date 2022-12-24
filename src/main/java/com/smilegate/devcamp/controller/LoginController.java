@@ -9,20 +9,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import static com.smilegate.devcamp.config.Const.*;
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/devcamp")
+@RequestMapping(BASIC_URL)
 public class LoginController {
 
     private final MemberService memberService;
@@ -33,7 +31,8 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginTry(@ModelAttribute("memberLoginDto") @Valid MemberLoginDto memberLoginDto, BindingResult bindingResult, HttpServletRequest request) {
+    public String loginTry(@ModelAttribute("memberLoginDto") @Valid MemberLoginDto memberLoginDto, BindingResult bindingResult, HttpServletRequest request,
+                           @RequestParam(defaultValue = BASIC_URL) String redirectURL) {
         if (bindingResult.hasErrors()) {
             log.error("[Register] Some fields are Empty!");
             return "login";

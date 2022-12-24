@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import static com.smilegate.devcamp.config.Const.*;
 
 import javax.validation.Valid;
 
 @Slf4j
 @Controller
-@RequestMapping("/devcamp")
+@RequestMapping(BASIC_URL)
 public class HomeController {
     @GetMapping
-    public String home(@SessionAttribute(name="LoginSession", required = false)Member loginMember, Model model) {
+    public String home(@SessionAttribute(name=LOGIN_SESSION, required = false)Member loginMember, Model model) {
 
         if (loginMember == null) {
             return "home";
