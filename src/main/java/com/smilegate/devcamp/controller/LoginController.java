@@ -48,7 +48,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute("LoginSession", loginMember);
 
-        return "redirect:/devcamp";
+        return "redirect:" + redirectURL;
     }
 
     @PostMapping("/logout")

@@ -24,7 +24,7 @@ public class LogInCheckInterceptor implements HandlerInterceptor {
 
         if(session == null || session.getAttribute(LOGIN_SESSION) == null){
             log.info("로그인 되어 있지 않습니다.");
-            response.sendRedirect(BASIC_URL);
+            response.sendRedirect("/devcamp/login?redirectURL=" + requestURI);
             return false;
         }
 
