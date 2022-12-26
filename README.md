@@ -48,6 +48,8 @@
 - IntelliJ
 - Git
 
+![architecture](https://user-images.githubusercontent.com/75191916/209574601-3e946936-77c2-4975-987f-b7b6e07b3cea.png)
+
 <br>
 
 ## 📌구현 기능
