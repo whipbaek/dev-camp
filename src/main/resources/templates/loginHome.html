@@ -13,17 +13,20 @@
         <h2>DevCamp Authentication Home</h2>
         <h3 th:text="|${loginMember.name} 님 반갑습니다!|"></h3>
         <br>
-        <form th:action="@{/devcamp/logout}" method="post">
+        <form th:action="@{/devcamp/logout}" method="post" style="float:left; margin-right: 10px;">
             <button class="btn-primary btn-lg" type="submit">Logout</button>
         </form>
-        <form th:action="@{/devcamp/edit}" method="get">
+        <form th:action="@{/devcamp/edit}" method="get" style="float:left; margin-right: 10px;">
             <button class="btn-primary btn-lg" type="submit">Edit</button>
         </form>
 
+        <form th:action="@{/devcamp/chat/rooms}" method="get" style="float:left; margin-right: 10px;">
+            <button class="btn-primary btn-lg" type="submit">Chat</button>
+        </form>
     </div>
 
+    <br>
     <div th:replace="snow :: snow"></div>
-
     <div th:replace="footer :: footer"></div>
 </div>
 

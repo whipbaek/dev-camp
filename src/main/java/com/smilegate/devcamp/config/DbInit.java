@@ -23,5 +23,6 @@ public class DbInit {
     @PostConstruct
     public void init() {
         memberService.join(new MemberDto("whipbaek@gmail.com","whddls12","백종인"));
+        memberService.join(new MemberDto("jibaek0513@gmail.com","whddls12","김종인"));
     }
 }
